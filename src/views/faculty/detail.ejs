@@ -1,0 +1,28 @@
+<%- include('../partials/header.ejs') %>
+
+<main>
+    <div class="faculty-header">
+        <h1><%= faculty.name %></h1>
+        <p class="faculty-title"> <%= faculty.title %></p>
+        <p class="faculty-description"><%= faculty.department %></p>
+    </div>
+    <div class="faculty-details">
+        <h2>Contact Information</h2>
+        <div class="detail-section">
+            <div class="detail-item">
+                <strong>Office:</strong> <%=faculty.office %>
+            </div>
+            <div class="detail-item">
+                <strong>Phone:</strong> <a href="tel:<%= faculty.phone %>"><%= faculty.phone %></a>
+            </div>
+            <div class="detail-item">
+                <strong>Email:</strong> <a href="mailto:<%= faculty.email %>"><%= faculty.email %></a>
+            </div>
+        </div>
+    </div>
+    <div class="navigation">
+        <p><a href="/faculty">&larr; Back to Faculty List</a></p>
+    </div>
+</main>
+
+<%- include('../partials/footer.ejs') %>

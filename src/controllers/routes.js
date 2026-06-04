@@ -16,11 +16,11 @@ router.get('/about', aboutPage);
 
 //Course catalog routes
 router.get('/catalog', catalogPage);
-router.get('/catalog/:courseId', courseDetailPage);
+router.get('/catalog/:slugId', courseDetailPage);
 
 // faculty routes
 router.get('/faculty', facultyListPage)
-router.get('/faculty/:facultyId', facultyDetailPage)
+router.get('/faculty/:facultySlug', facultyDetailPage)
 
 
 // Demo page with special middleware

@@ -1,13 +1,32 @@
 import { Router } from 'express';
-
+import contactRoutes from './forms/contact.js'
+// import { homePage } from './home.js';
+// import { aboutPage } from './about.js';
 // Create a new router instance
-const router = Router();
 
 // TODO: Add import statements for controllers and middleware
 import {addDemoHeaders} from '../middleware/demo/headers.js';
 import {catalogPage, courseDetailPage} from './catalog/catalog.js';
 import {homePage, aboutPage, demoPage, testErrorPage} from './index.js';
 import { facultyDetailPage,facultyListPage } from './faculty/faculty.js';
+
+const router = Router();
+// Route middleware
+router.use('/catalog',(req,res,next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/catalog.css">');
+    next();
+});
+
+router.use('/faculty',(req,res,next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/faculty.css">');
+    next();
+});
+
+router.use('/contact', (req, res, next) => {
+    res.addStyle('<link rel="stylesheet" href="/css/contact.css">');
+    next();
+});
+
 // TODO: Add route definitions
 
 //Home and basic pages
@@ -28,5 +47,7 @@ router.get('/demo', addDemoHeaders, demoPage);
 
 //Route to trigger a test error
 router.get('/test-error', testErrorPage);
+// Contact form routes
+router.use('/contact', contactRoutes);
 
 export default router;

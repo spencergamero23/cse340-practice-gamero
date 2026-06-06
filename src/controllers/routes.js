@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import contactRoutes from './forms/contact.js'
+import registrationRoutes from './forms/registration.js';
 // import { homePage } from './home.js';
 // import { aboutPage } from './about.js';
 // Create a new router instance
@@ -53,5 +54,7 @@ router.get('/demo', addDemoHeaders, demoPage);
 router.get('/test-error', testErrorPage);
 // Contact form routes
 router.use('/contact', contactRoutes);
+// Registration routes
+router.use('/register', registrationRoutes);
 
 export default router;

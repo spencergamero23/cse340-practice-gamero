@@ -1,9 +1,8 @@
 import { Router } from 'express';
 import bcrypt from 'bcrypt';
 import { body, validationResult } from 'express-validator';
-import bcrypt from 'bcrypt';
 import { emailExists, saveUser, getAllUsers } from '../../models/forms/registration.js';
-import { render } from 'ejs';
+
 
 const router = Router();
 

@@ -20,7 +20,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@9.15.0",
   "devDependencies": {
     "nodemon": "^3.1.14"
   }

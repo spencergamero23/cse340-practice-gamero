@@ -10,13 +10,17 @@ const router = Router();
 const loginValidation = [
     body('email')
         .trim()
+        .isLength({max: 255 })
+        .withMessage('Email address is too long')
         .isEmail()
         .withMessage('Please provide a valid email address')
         .normalizeEmail(),
 
     body('password')
-        .isLength({ min: 8 })
+        .notEmpty()
         .withMessage('Password is required')
+        .isLength({ min: 8, max: 128 })
+        .withMessage('Password must be between 8 and 128 characters')
 ];
 
 /**
@@ -42,8 +46,11 @@ const processLogin = async (req, res) => {
     if (!errors.isEmpty()) {
         // TODO: Log validation errors to console
         // TODO: Redirect back to /login
-        console.error(error.array());
-        return res.redirect('/login');
+
+        errors.array().forEach(error=>{
+            req.flash('error',error.msg);
+        });
+        return res.redirect('/login')
     }
 
     // TODO: Extract email and password from req.body
@@ -56,14 +63,15 @@ const processLogin = async (req, res) => {
         const user = await findUserByEmail(email);
         // null check
         if(!user){
-            console.log('User not found');
+            
+            req.flash('error', 'Invalid email or password');
             return res.redirect('/login');
         }
         // TODO: Verify password using verifyPassword(password, user.password)
         // TODO: If password incorrect, log "Invalid password" and redirect to /login
         if(!await verifyPassword(password, user.password))
         {
-            console.log("Invalid password");
+            req.flash('error', 'Invalid email or password');
             return res.redirect('/login');
         }
         // SECURITY: Remove password from user object before storing in session
@@ -72,12 +80,14 @@ const processLogin = async (req, res) => {
         // TODO: Store user in session: req.session.user = user
         // TODO: Redirect to /dashboard
         req.session.user = user;
+        req.flash('success', `Welcome, ${user.name}!`);
         res.redirect('/dashboard');
     } catch (error) {
         // Model functions do not catch errors, so handle them here
         // TODO: Log error to console
         // TODO: Redirect to /login
-        console.error(error.array());
+        console.error(error);
+        req.flash('error','Something went wrong. Please try again.');
         res.redirect('/login');
     }
 };

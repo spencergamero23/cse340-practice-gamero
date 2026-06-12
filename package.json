@@ -1,5 +1,8 @@
 {
   "name": "cse340-practice-gamero",
+  "pnpm": {
+    "onlyBuiltDependencies": ["bcrypt", "pg"]
+  },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "connect-pg-simple": "^10.0.0",

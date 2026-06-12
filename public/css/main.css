@@ -67,3 +67,61 @@ body {
         }
     }
 }
+/* about page */
+.about-container {
+    max-width: 680px;
+    margin: 2rem 0;
+    padding: 0 1rem;
+}
+
+.about-hero {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.about-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    flex-shrink: 0;
+}
+
+.about-hero-text h1 {
+    margin: 0 0 0.25rem;
+}
+
+.about-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.about-bio {
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+}
+
+.about-bio p {
+    line-height: 1.7;
+    margin: 0 0 1rem;
+}
+
+.about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1.25rem;
+}
+
+.about-tag {
+    font-size: 13px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: #f5f5f5;
+    color: #555;
+    border: 1px solid #e0e0e0;
+}
